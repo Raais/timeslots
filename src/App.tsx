@@ -329,7 +329,7 @@ const activeSlotKey = activeSlot
   setFaviconSquare(color);
 
   if (activeSlot) {
-    document.title = activeSlot.meta.name;
+    document.title = `${activeSlot.meta.name} · ${toTimeStringHHMM(activeSlot.start)}–${toTimeStringHHMM(activeSlot.end)}`;
   } else {
     document.title = "Timeslots";
   }
