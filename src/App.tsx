@@ -340,7 +340,17 @@ const activeSlotKey = activeSlot
     if (!name) return;
 
     const startSeconds = fromTimeStringHHMM(pickerStart);
-    const endSeconds = fromTimeStringHHMM(pickerEnd);
+    
+    // Treat pickerEnd as an exclusive boundary, store inclusive end = -1 sec.
+    const endExclusive = fromTimeStringHHMM(pickerEnd);
+
+    // If user picks the same time (or earlier), it would become invalid after -1.
+    if (endExclusive <= startSeconds) {
+      window.alert("End time must be after start time.");
+      return;
+    }
+
+    const endSeconds = Math.max(0, endExclusive - 1);
 
     try {
       const store = readStoreForToday(new Date());
