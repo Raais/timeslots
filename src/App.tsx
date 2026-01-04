@@ -327,6 +327,12 @@ const activeSlotKey = activeSlot
     : "rgba(120,120,120,0.9)";
 
   setFaviconSquare(color);
+
+  if (activeSlot) {
+    document.title = activeSlot.meta.name;
+  } else {
+    document.title = "Timeslots";
+  }
 }, [activeSlotKey]);
 
   const resetTimeslots = () => {
